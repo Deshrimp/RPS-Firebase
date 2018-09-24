@@ -39,9 +39,11 @@ connectedRef.on("value", async function (snap) {
 connectionsRef.on("value", function (snap) {
   if (snap.numChildren() <= 1) {
     userName = "Ragnar"
+    $("#userid").text("You are Ragnar")
   }
   else {
     userName = "Rollo"
+    $("#userid").text("You are Rollo")
   }
   // Display the viewer count in the html.
   // The number of online users is the number of children in the connections list.
@@ -49,6 +51,7 @@ connectionsRef.on("value", function (snap) {
 
 })
 
+var postsRef = database.ref().child("posts")
 
 //About Once: Listens for exactly one event of the specified event type, and then stops listening.
 //This is equivalent to calling on(), and then calling off() inside the callback function.
@@ -60,14 +63,27 @@ database.ref().on("value", function (snapshot) {
   $(".checkbox").on("click", function () {
     $("#checkboxes").text("")
     userSelection = this.id
-    var userKey = database.ref().push({
+    var newPostRef = postsRef.push()
+    var postId = newPostRef.key
+    newPostRef.set({
       name: userName,
       user: userid,
       selection: userSelection,
-    }).getKey()
+      idkey: postId
+    })
+    var leadsRef = database.ref('posts');
+    leadsRef.on('value', function (snapshot) {
+      snapshot.forEach(function (childSnapshot) {
+        var printname = childSnapshot.val().name;
+        var printid = childSnapshot.val().user;
+        var printselection = childSnapshot.val().selection;
+        console.log(printname)
+        console.log(printid)
+        console.log(printselection)
+      });
+    });
 
-    var useer = snapshot.val().userKey
-    console.log(useer)
+
     /*if (userName === "Ragnar") {
       var ragnarSelection = userSelection
       console.log("I'm Ragnar")
@@ -79,5 +95,5 @@ database.ref().on("value", function (snapshot) {
       console.log(rolloSelection)
     }*/
   })
-})
 
+})
