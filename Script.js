@@ -59,36 +59,36 @@ connectionsRef.once("value", snap => {
   if (snap.numChildren() > 2)
     window.location.replace("./sorry.html")
 })
-database.ref().on("value", function (snapshot) {
-  $(".checkbox").on("click", function () {
-    $("#checkboxes").text("")
-    userSelection = this.id
-    var newPostRef = postsRef.push()
-    var postId = newPostRef.key
-    newPostRef.set({
-      name: userName,
-      user: userid,
-      selection: userSelection,
-      idkey: postId
-    })
-    var leadsRef = database.ref('posts');
-    leadsRef.on('value', function (snapshot) {
-      snapshot.forEach(function (childSnapshot) {
-        var printname = childSnapshot.val().name;
-        var printid = childSnapshot.val().user;
-        var printselection = childSnapshot.val().selection;
-        if (printname === "Ragnar") {
-          $("#RagnarPick").append(printselection)
-        } else {
-          $("#RolloPick").append(printselection)
-        }
-        console.log(printname)
-        console.log(printid)
-        console.log(printselection)
-      });
-    });
 
-
+$(".checkbox").on("click", function () {
+  $("#checkboxes").text("")
+  userSelection = this.id
+  var newPostRef = postsRef.push()
+  var postId = newPostRef.key
+  newPostRef.set({
+    name: userName,
+    user: userid,
+    selection: userSelection,
+    idkey: postId
   })
+  var leadsRef = database.ref('posts');
+  leadsRef.on('value', function (snapshot) {
+    snapshot.forEach(function (childSnapshot) {
+      var printname = childSnapshot.val().name;
+      var printid = childSnapshot.val().user;
+      var printselection = childSnapshot.val().selection;
+      if (printname === "Ragnar") {
+        $("#RagnarPick").append(printselection)
+      } else {
+        $("#RolloPick").append(printselection)
+      }
+      console.log(printname)
+      console.log(printid)
+      console.log(printselection)
+    });
+  });
+
 
 })
+
+
