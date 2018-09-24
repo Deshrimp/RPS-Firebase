@@ -77,6 +77,11 @@ database.ref().on("value", function (snapshot) {
         var printname = childSnapshot.val().name;
         var printid = childSnapshot.val().user;
         var printselection = childSnapshot.val().selection;
+        if (printname === "Ragnar") {
+          $("#RagnarPick").append(printselection)
+        } else {
+          $("#RolloPick").append(printselection)
+        }
         console.log(printname)
         console.log(printid)
         console.log(printselection)
