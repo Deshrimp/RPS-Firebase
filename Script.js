@@ -36,7 +36,7 @@ connectedRef.on("value", async function (snap) {
 })
 
 // When first loaded or when the connectons list changes...
-connectionsRef.on("value", function (snap) {
+connectionsRef.once("value", function (snap) {
   if (snap.numChildren() <= 1) {
     userName = "Ragnar"
     $("#userid").text("You are Ragnar")
@@ -89,16 +89,6 @@ database.ref().on("value", function (snapshot) {
     });
 
 
-    /*if (userName === "Ragnar") {
-      var ragnarSelection = userSelection
-      console.log("I'm Ragnar")
-      console.log(ragnarSelection)
-    }
-    else {
-      var rolloSelection = snapshot.child("Rollo".selection)
-      console.log("I'm Rollo")
-      console.log(rolloSelection)
-    }*/
   })
 
 })
