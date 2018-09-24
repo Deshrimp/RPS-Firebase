@@ -83,8 +83,10 @@ movesRef.on("child_added", function(snapshot) {
       Ragnarwins++
       $("#whowins").text("Ragnar Wins: " + Ragnarwins)
     } else if (Ragnarpick === "Scissors" && Rollopick === "Rock") {
+      Rollowins++
       $("#whowins").text("Rollo Wins: " + Rollowins)
     } else if (Ragnarpick === "Scissors" && Rollopick === "Paper") {
+      Ragnarwins++
       $("#whowins").text("Ragnar Wins: " + Ragnarwins)
     } else if (Ragnarpick === "Paper" && Rollopick === "Rock") {
       Ragnarwins++
@@ -101,7 +103,7 @@ movesRef.on("child_added", function(snapshot) {
 })
 
 $(".checkbox").on("click", function() {
-  $("#checkboxes").text("")
+  $("#checkboxes").hide()
   userSelection = this.id
   movesRef.push({
     name: userName,
@@ -122,5 +124,7 @@ $(".checkbox").on("click", function() {
 })*/
 function nextMatch() {
   console.log("this goes to next question")
+  $("#checkboxes").show()
+  $(".checkbox").prop("checked", false)
   movesRef.remove()
 }
