@@ -59,7 +59,10 @@ connectionsRef.once("value", snap => {
   if (snap.numChildren() > 2)
     window.location.replace("./sorry.html")
 })
-
+var printname
+var printid
+var printselection
+var leadsRef = database.ref('posts');
 $(".checkbox").on("click", function () {
   $("#checkboxes").text("")
   userSelection = this.id
@@ -71,20 +74,20 @@ $(".checkbox").on("click", function () {
     selection: userSelection,
     idkey: postId
   })
-  var leadsRef = database.ref('posts');
   leadsRef.on('value', function (snapshot) {
     snapshot.forEach(function (childSnapshot) {
-      var printname = childSnapshot.val().name;
-      var printid = childSnapshot.val().user;
-      var printselection = childSnapshot.val().selection;
+      printname = childSnapshot.val().name;
+      printid = childSnapshot.val().user;
+      printselection = childSnapshot.val().selection;
+    });
+    leadsRef.once('child_added', function (snapshot) {
       if (printname === "Ragnar") {
-        $("#RagnarPick").append(printselection)
-      } else {
-        $("#RolloPick").append(printselection)
+        var Ragnarpick = printselection
+        $("#RagnarPick").append(Ragnarpick)
+      } else if (printname === "Rollo") {
+        var Rollopick = printselection
+        $("#RolloPick").append(Rollopick)
       }
-      console.log(printname)
-      console.log(printid)
-      console.log(printselection)
     });
   });
 
