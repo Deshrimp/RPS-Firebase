@@ -96,38 +96,38 @@ $(".checkbox").on("click", function () {
       if (Ragnarpick === "Rock" && Rollopick === "Paper") {
         Rollowins++
         console.log("rollowins" + Rollowins)
-        $("#whowins").text("Rollo Wins: ", Rollowins)
+        $("#whowins").text("Rollo Wins: " + Rollowins)
       }
       else if (Ragnarpick === "Rock" && Rollopick === "Scissors") {
         Ragnarwins++
         console.log("ragnarwins" + Ragnarwins)
-        $("#whowins").text("Ragnar Wins: ", Ragnarwins)
+        $("#whowins").text("Ragnar Wins: " + Ragnarwins)
       }
       else if (Ragnarpick === "Scissors" && Rollopick === "Rock") {
         Rollowins++
         console.log("rollowins" + Rollowins)
-        $("#whowins").text("Rollo Wins: ", Rollowins)
+        $("#whowins").text("Rollo Wins: " + Rollowins)
       }
       else if (Ragnarpick === "Scissors" && Rollopick === "Paper") {
         Ragnarwins++
         console.log("ragnarwins" + Ragnarwins)
-        $("#whowins").text("Ragnar Wins: ", Ragnarwins)
+        $("#whowins").text("Ragnar Wins: " + Ragnarwins)
       }
 
       else if (Ragnarpick === "Paper" && Rollopick === "Rock") {
         Ragnarwins++
         console.log("ragnarwins" + Ragnarwins)
-        $("#whowins").text("Ragnar Wins: ", Ragnarwins)
+        $("#whowins").text("Ragnar Wins: " + Ragnarwins)
       }
 
       else if (Ragnarpick === "Paper" && Rollopick === "Scissors") {
         Rollowins++
         console.log("rollowins" + Rollowins)
-        $("#whowins").text("Rollo Wins: ", Rollowins)
+        $("#whowins").text("Rollo Wins: " + Rollowins)
       }
       else if (Ragnarpick === Rollopick) {
         draw++
-        $("#whowins").text("It was a draw: ", draw)
+        $("#whowins").text("It was a draw: " + draw)
       }
     });
   });
