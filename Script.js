@@ -62,6 +62,11 @@ connectionsRef.once("value", snap => {
 var printname
 var printid
 var printselection
+var Ragnarpick
+var Rollopick
+var Ragnarwins = 0
+var Rollowins = 0
+var draw = 0
 var leadsRef = database.ref('posts');
 $(".checkbox").on("click", function () {
   $("#checkboxes").text("")
@@ -82,11 +87,47 @@ $(".checkbox").on("click", function () {
     });
     leadsRef.once('child_added', function (snapshot) {
       if (printname === "Ragnar") {
-        var Ragnarpick = printselection
+        Ragnarpick = printselection
         $("#RagnarPick").append(Ragnarpick)
       } else if (printname === "Rollo") {
-        var Rollopick = printselection
+        Rollopick = printselection
         $("#RolloPick").append(Rollopick)
+      }
+      if (Ragnarpick === "Rock" && Rollopick === "Paper") {
+        Rollowins++
+        console.log("rollowins" + Rollowins)
+        $("#whowins").text("Rollo Wins: ", Rollowins)
+      }
+      else if (Ragnarpick === "Rock" && Rollopick === "Scissors") {
+        Ragnarwins++
+        console.log("ragnarwins" + Ragnarwins)
+        $("#whowins").text("Ragnar Wins: ", Ragnarwins)
+      }
+      else if (Ragnarpick === "Scissors" && Rollopick === "Rock") {
+        Rollowins++
+        console.log("rollowins" + Rollowins)
+        $("#whowins").text("Rollo Wins: ", Rollowins)
+      }
+      else if (Ragnarpick === "Scissors" && Rollopick === "Paper") {
+        Ragnarwins++
+        console.log("ragnarwins" + Ragnarwins)
+        $("#whowins").text("Ragnar Wins: ", Ragnarwins)
+      }
+
+      else if (Ragnarpick === "Paper" && Rollopick === "Rock") {
+        Ragnarwins++
+        console.log("ragnarwins" + Ragnarwins)
+        $("#whowins").text("Ragnar Wins: ", Ragnarwins)
+      }
+
+      else if (Ragnarpick === "Paper" && Rollopick === "Scissors") {
+        Rollowins++
+        console.log("rollowins" + Rollowins)
+        $("#whowins").text("Rollo Wins: ", Rollowins)
+      }
+      else if (Ragnarpick === Rollopick) {
+        draw++
+        $("#whowins").text("It was a draw: ", draw)
       }
     });
   });
