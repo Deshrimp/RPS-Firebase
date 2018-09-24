@@ -14,11 +14,8 @@ var con
 var userName = ""
 var userid = ""
 var userSelection = ""
-var printname
-var printid
-var printselection
-var Ragnarpick
-var Rollopick
+var Ragnarpick = ""
+var Rollopick = ""
 var Ragnarwins = 0
 var Rollowins = 0
 var draw = 0
@@ -71,12 +68,12 @@ movesRef.on("child_added", function(snapshot) {
     Rollopick = selection
   }
   if (name === userName) {
-    $("#myChoice").append(selection)
+    $("#myChoice").text("You chose: " + selection)
   }
 
   if (Ragnarpick && Rollopick) {
-    $("#RagnarPick").append(Ragnarpick)
-    $("#RolloPick").append(Rollopick)
+    $("#RagnarPick").text("Ragnar picked: " + Ragnarpick)
+    $("#RolloPick").text("Rollo picked: " + Rollopick)
     if (Ragnarpick === "Rock" && Rollopick === "Paper") {
       Rollowins++
       $("#whowins").text("Rollo Wins: " + Rollowins)
@@ -126,12 +123,18 @@ $(".checkbox").on("click", function() {
 function nextMatch() {
   $("#nextMatch").show()
 }
+
 $("#nextMatch").on("click", function() {
   $("#nextMatch").hide()
   $("#checkboxes").show()
   $(".checkbox").prop("checked", false)
   $("#RagnarPick").text("")
   $("#RolloPick").text("")
-  $("#RagnarPick").text("")
+  $("#whowins").text("")
+  $("#myChoice").text("")
   movesRef.remove()
+
+  userSelection = ""
+  Ragnarpick = ""
+  Rollopick = ""
 })
