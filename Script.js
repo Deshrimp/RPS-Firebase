@@ -23,6 +23,7 @@ var Ragnarwins = 0
 var Rollowins = 0
 var draw = 0
 var movesRef = database.ref("moves")
+$("#nextMatch").hide()
 
 // All of our connections will be stored in this directory.
 var connectionsRef = database.ref("/connections")
@@ -123,8 +124,14 @@ $(".checkbox").on("click", function() {
 
 })*/
 function nextMatch() {
-  console.log("this goes to next question")
+  $("#nextMatch").show()
+}
+$("#nextMatch").on("click", function() {
+  $("#nextMatch").hide()
   $("#checkboxes").show()
   $(".checkbox").prop("checked", false)
+  $("#RagnarPick").text("")
+  $("#RolloPick").text("")
+  $("#RagnarPick").text("")
   movesRef.remove()
-}
+})
