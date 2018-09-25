@@ -5,9 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!--Bootstrap-->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-    crossorigin="anonymous">
+
   <!--Bootstrap JS-->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -16,18 +14,18 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
   <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
-  <!-- Firechat -->
-  <link rel="stylesheet" href="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.css" />
-  <script src="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/2.2.0/angularfire.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <title>Document</title>
 </head>
 
 <body>
   <div class="container">
-    <!--Checkboxes-->
+    <!--Who am I-->
     <div id="userid"></div>
-
+    <!--Checkboxes-->
     <div id="checkboxes">
       <input type="checkbox" id="Rock" value="Value1" class="checkbox" /> Rock
       <hr>
@@ -36,20 +34,43 @@
       <input type="checkbox" id="Scissors" value="Value1" class="checkbox" /> Scissors
       <hr>
     </div>
+    <!--What did I pick-->
     <div id="myChoice">You chose: </div>
     <hr />
+    <!--Picks-->
     <div id="RagnarPick">Ragnar picked: </div>
     <div id="RolloPick">Rollo picked: </div>
+    <!--Who won-->
     <div id="whowins"></div>
   </div>
+  <!--Next match button-->
   <button id="nextMatch">Next</button>
-  <div id="firechat-wrapper">
-    <button onclick="login('twitter');">Login with Twitter</button>
-    <hr>
-    Players:
-    <div id="watchers"></div>
-    <!--My Script-->
-    <script src="./Script.js"></script>
+  <!--Chat-->
+  <div lang="en" ng-app="chatApp">
+    <div ng-controller="ChatController">
+      <br>
+      <div class="container">
+        <div class="panel panel-primary">
+          <div class="panel-heading">Chat with your enemy</div>
+          <div class="panel-body">
+            <p ng-repeat="m in messages">{{m.uuser }} - {{m.message}} </p>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Message here..." ng-model="messageText">
+            </div>
+            <button type="submit" class="btn btn-default" ng-click="send()">Send</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr>
+  Players:
+  <div id="watchers"></div>
+  <!--My Script-->
+  <script src="./Script.js"></script>
+
 </body>
 
 </html>

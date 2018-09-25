@@ -20,6 +20,10 @@ var Ragnarwins = 0
 var Rollowins = 0
 var draw = 0
 var movesRef = database.ref("moves")
+var refmessage = firebase
+  .database()
+  .ref()
+  .child("messages")
 $("#nextMatch").hide()
 
 // All of our connections will be stored in this directory.
@@ -31,6 +35,7 @@ var connectedRef = database.ref(".info/connected")
 // When the client's connection state changes...
 connectedRef.on("value", async function(snap) {
   movesRef.remove()
+  refmessage.remove()
   // If they are connected..
   if (snap.val()) {
     // Add user to the connections list.
@@ -168,4 +173,17 @@ $("#nextMatch").on("click", function() {
   userSelection = ""
   Ragnarpick = ""
   Rollopick = ""
+})
+//chat
+var app = angular.module("chatApp", ["firebase"])
+
+app.controller("ChatController", function($scope, $firebaseArray) {
+  $scope.messages = $firebaseArray(refmessage)
+
+  $scope.send = function() {
+    $scope.messages.$add({
+      message: $scope.messageText,
+      uuser: userName
+    })
+  }
 })
