@@ -63,7 +63,7 @@ connectionsRef.once("value", function(snap) {
 
 //Eliminate a third connection
 connectionsRef.once("value", snap => {
-  if (snap.numChildren() > 6) window.location.replace("./sorry.html")
+  if (snap.numChildren() > 2) window.location.replace("./sorry.html")
 })
 function login() {
   // Log the user in via Twitter
