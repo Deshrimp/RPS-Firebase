@@ -30,6 +30,7 @@ var connectionsRef = database.ref("/connections")
 var connectedRef = database.ref(".info/connected")
 // When the client's connection state changes...
 connectedRef.on("value", async function(snap) {
+  movesRef.remove()
   // If they are connected..
   if (snap.val()) {
     // Add user to the connections list.
