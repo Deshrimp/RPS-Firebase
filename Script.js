@@ -60,7 +60,37 @@ connectionsRef.once("value", function(snap) {
 connectionsRef.once("value", snap => {
   if (snap.numChildren() > 2) window.location.replace("./sorry.html")
 })
+function login() {
+  // Log the user in via Twitter
+  var provider = new firebase.auth.TwitterAuthProvider()
+  firebase
+    .auth()
+    .signInWithPopup(provider)
+    .catch(function(error) {
+      console.log("Error authenticating user:", error)
+    })
+}
 
+firebase.auth().onAuthStateChanged(function(user) {
+  // Once authenticated, instantiate Firechat with the logged in user
+  if (user) {
+    initChat(user)
+  }
+})
+
+function initChat(user) {
+  // Get a Firebase Database ref
+  var chatRef = firebase.database().ref("chat")
+
+  // Create a Firechat instance
+  var chat = new FirechatUI(
+    chatRef,
+    document.getElementById("firechat-wrapper")
+  )
+
+  // Set the Firechat user
+  chat.setUser(user.uid, user.displayName)
+}
 movesRef.on("child_added", function(snapshot) {
   const { name, selection } = snapshot.val()
   if (name === "Ragnar") {
