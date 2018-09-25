@@ -1,0 +1,18 @@
+body {
+  background-color: rgb(243, 237, 235);
+  font-family: "Dosis", sans-serif;
+  font-size: 1.5rem;
+}
+#cont1 {
+  background-color: rgb(224, 200, 187);
+}
+.panel-primary > .panel-heading {
+  background-color: rgb(156, 113, 96);
+  border-color: rgb(156, 113, 96);
+}
+.panel-primary {
+  border-color: rgb(156, 113, 96);
+}
+button {
+  font-size: 2rem;
+}

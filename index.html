@@ -18,20 +18,27 @@
   <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
   <script src="https://cdn.firebase.com/libs/angularfire/2.2.0/angularfire.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="./assets/Style/Style.css">
+  <!--Google Font-->
+  <link href="https://fonts.googleapis.com/css?family=Dosis:700" rel="stylesheet">
+  <title>RPS-Game</title>
 </head>
 
 <body>
-  <div class="container">
+  <div id="cont1" class="container">
     <!--Who am I-->
-    <div id="userid"></div>
+    <h1 id="userid"></h1>
     <!--Checkboxes-->
     <div id="checkboxes">
-      <input type="checkbox" id="Rock" value="Value1" class="checkbox" /> Rock
+
+      <input type="checkbox" id="Rock" class="checkbox" />
+      <label for="Rock">Rock</label>
       <hr>
-      <input type="checkbox" id="Paper" value="Value1" class="checkbox" /> Paper
+      <input type="checkbox" id="Paper" class="checkbox" /> Paper
       <hr>
-      <input type="checkbox" id="Scissors" value="Value1" class="checkbox" /> Scissors
+      <input type="checkbox" id="Scissors" class="checkbox" /> Scissors
       <hr>
     </div>
     <!--What did I pick-->
@@ -44,7 +51,7 @@
     <div id="whowins"></div>
   </div>
   <!--Next match button-->
-  <button id="nextMatch">Next</button>
+  <button class="btn btn-secondary" id="nextMatch">Next</button>
   <!--Chat-->
   <div lang="en" ng-app="chatApp">
     <div ng-controller="ChatController">
@@ -66,10 +73,9 @@
   </div>
 
   <hr>
-  Players:
-  <div id="watchers"></div>
+
   <!--My Script-->
-  <script src="./Script.js"></script>
+  <script src="./assets/Script/Script.js"></script>
 
 </body>
 
